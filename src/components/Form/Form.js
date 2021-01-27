@@ -4,8 +4,10 @@ import PropTypes from 'prop-types';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-import Input from './Input';
-import Button from "./Button";
+import Input from '../Input';
+import Button from '../Button';
+
+import s from './Form.module.css';
 
 class Form extends Component {
     state = {
@@ -35,9 +37,9 @@ class Form extends Component {
 
     render() {
         return (
-            <form onSubmit={this.handleSubmit}> 
-                <Input type='text' name='search' value={this.state.value} placeholder='Search images and photos' onChange={this.handleInputChange}/> 
-                <Button type='submit' children='Искать' />
+            <form className={s.Form} id='form' onSubmit={this.handleSubmit}> 
+                <Input className={s.Input} type='text' name='search' value={this.state.value} placeholder='Search images and photos' onChange={this.handleInputChange}/> 
+                <Button className={s.Button} type='submit' children='Search' />
             </form>
         )
     }
@@ -46,5 +48,6 @@ class Form extends Component {
 export default Form;
 
 Form.propTypes = {
-    onSubmit: PropTypes.func.isRequired,    
+    onSubmit: PropTypes.func.isRequired,  
+    children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.object,), PropTypes.element,])  
 }
